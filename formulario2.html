@@ -1,0 +1,236 @@
+<html lang="en">
+
+<head>
+  <title>Formulario 2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <!-- Bootstrap Font Icon CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      background: #fff;
+    }
+
+    .ctn {
+      width: 100%;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      margin-top: 10px;
+      margin-left: 10px;
+      margin: auto;
+
+    }
+
+   
+ 
+  </style>
+</head>
+
+<body>
+  <p></p>
+
+  <div class="container ctn">
+
+    <div class="row">
+      <div class="col-md-12 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+
+              <span class="bi bi-handbag" style="font-size: 100px"></span>
+
+              <p>
+              <h2 class="text-center">Listado de Pedidos</h2>
+              </p>
+
+
+
+              <div class="form-inline">
+                <div class="form-group" style="padding-left: 10%;">
+                  <label class="col-md-2 control-label" for="inputPed">Pedido: </label>
+                  <div class="col-md-4">
+                    <input id="inputPed" name="inputPed" type="text" placeholder="Ingrese Pedido"
+                      class="form-control input-md">
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group" style="padding-left: 10%;">
+                  <label class="col-md-2 control-label" for="inputCant">Cantidad: </label>
+                  <div class="col-md-4">
+                    <input id="inputCant" name="inputCant" type="text" placeholder="cantidad"
+                      class="form-control input-md">
+
+                  </div>
+                </div>
+              </div>
+
+              <br>
+
+              <div class="form-inline">
+                <div class="form-group" style="padding-left: 10%;">
+                  <label class="col-md-2 control-label" for="inputProd">Producto: </label>
+                  <div class="col-md-4">
+                    <input id="inputProd" name="inputProd" type="text" placeholder="Ingrese Producto"
+                      class="form-control input-md">
+                  </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group" style="padding-left: 10%;">
+                  <label class="col-md-2 control-label" for="inputVal">Valor: </label>
+                  <div class="col-md-4">
+                    <input id="inputVal" name="inputVal" placeholder="Valor" class="form-control input-md">
+
+                  </div>
+                </div>
+              </div>
+              <br>
+
+
+
+
+              <div class="form-group">
+                <button id="btnRegisterPed" class="btn btn-success" type="button"><i class="bi bi-plus-circle-fill"></i>
+                  Agregar </button>
+              </div>
+              <!-- </form> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>&nbsp;</div>
+
+    <div class="row ctn">
+      <div class="col-md-12 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              Listado de Pedidos
+ 
+                <div style="overflow: auto;">
+
+                  <table class="table" id="tblCat">
+                    <thead>
+                      <th style="text-align:center">#</th>
+                      <th style="text-align:center">Cantidad</th>
+                      <th style="text-align:center">Producto</th>
+                      <th style="text-align:center">Valor</th>
+                      <th style="text-align:center">Eliminar</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+
+                </div> 
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+const myObject = {
+  producto : [
+        "1",
+        "50",
+        "Harina",
+        "1500"
+      ],
+  producto2 : [
+        "2",
+        "25",
+        "Atún",
+        "6900"
+      ]
+}
+
+window.localStorage.setItem("myObject", JSON.stringify(myObject));
+
+let newObject = window.localStorage.getItem("myObject");
+  
+
+  for (var key in myObject) {
+    $('#tblCat').append('<tr id="tr_' + key + '">'+
+                        '<td style="text-align:center">' + myObject[key][0] + '</td>'+
+                        '<td style="text-align:center">' + myObject[key][1] + '</td>'+
+                        '<td style="text-align:center">' + myObject[key][2] + '</td>'+
+                        '<td style="text-align:center">' + myObject[key][3] + '</td>'+ 
+                        '<td style="text-align:center"><button type="button" value="' + key + '" class="btn btn-danger btn-sm btn-delete"> <i class="bi bi-trash"></i> </button></td>'+
+                        '</tr>')
+  }
+
+
+
+  $(document).on('click', '#btnRegisterPed', function (event) {
+ 
+
+    if ($("#inputPed").val() < 1) {
+      alert("Debe ingresar número de pedido")
+      $("#inputCat").focus()
+    } else {
+ 
+
+      var key = getRandomInt(500);
+      $('#tblCat').append('<tr id="tr_' + key + '">'+
+                          '<td style="text-align:center">' + key + $("#inputPed").val() + '</td>'+
+                          '<td style="text-align:center">' + key + $("#inputCant").val() + '</td>'+
+                          '<td style="text-align:center">' + key + $("#inputProd").val() + '</td>'+
+                          '<td style="text-align:center">' + key + $("#inputVal").val() + '</td>'+
+                          '<td style="text-align:center"><button type="button" value="' + key + '" class="btn btn-danger btn-sm btn-delete"><i class="bi bi-trash"></i> </button></td>'+
+                          '</tr>')
+      console.log(key);
+
+      $("#inputPed").val("")
+      $("#inputCant").val("")
+      $("#inputProd").val("")
+      $("#inputVal").val("")
+      $("#inputPed").focus()
+    }
+
+  });
+
+
+  $(document).on('click', '.btn-delete', function (event) {
+    $("#tr_" + $(this).val()).remove();
+  })
+
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,168 @@
+<html lang="en">
+
+<head>
+  <title>Formulario 1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <!-- Bootstrap Font Icon CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      background: #fff;
+    }
+
+    .ctn {
+      width: 100%;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      margin-top: 10px;
+      margin-left: 10px;
+      margin: auto;
+
+    }
+  </style>
+</head>
+
+<body>
+  <p></p>
+
+  <div class="container ctn">
+
+    <div class="row">
+      <div class="col-md-12 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+
+              <span class="bi bi-handbag" style="font-size: 100px"></span>
+
+              <p>
+              <h2 class="text-center">Productos</h2>
+              </p>
+
+              <!-- <form id="register-form" role="form" autocomplete="off" class="form" method="post"> -->
+
+              <div class="form-group">
+                <div class="input-group">
+                  <label for="">Categoría: </label>
+                  <div class="col-md-10 col-sm-10 col-xs-10">
+                    <input id="inputCat" name="input" placeholder="Ingrese categoría" class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button id="btnRegisterCat" class="btn btn-success" type="button"><i class="bi bi-plus-circle-fill"></i>
+                  Agregar </button>
+              </div>
+              <!-- </form> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>&nbsp;</div>
+
+    <div class="row ctn">
+      <div class="col-md-12 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              Listado Categorías de Productos
+              <table class="table" id="tblCat">
+                <tbody> 
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+
+
+  // Storage.prototype.setObj = function(key, obj) {
+  //     return this.setItem(key, JSON.stringify(obj))
+  // }
+  // Storage.prototype.getObj = function(key) {
+  //     return JSON.parse(this.getItem(key))
+  // }
+
+ 
+  let categorias = ["Consumo", "Básicos"]
+  let string = JSON.stringify(categorias)
+
+
+  localStorage.setItem("categorias", string)
+
+  let retString = localStorage.getItem("categorias")
+  let retArray = JSON.parse(retString)
+
+  console.log(retArray);
+
+
+  for (var key in retArray) {
+    $('#tblCat').append('<tr id="tr_' + key + '"><td style="text-align:center">' + retArray[key] + '</td><td style="text-align:center"><button type="button" value="' + key + '" class="btn btn-danger btn-sm btn-delete"> <i class="bi bi-trash"></i> </button></td></tr>')
+  }
+
+
+
+  $(document).on('click', '#btnRegisterCat', function(event){
+
+    if ($("#inputCat").val() < 1) {
+      alert("Debe ingresar una categoría")
+      $("#inputCat").focus()
+    } else {
+      var key = getRandomInt(500);
+      $('#tblCat').append('<tr id="tr_' + key + '"><td style="text-align:center">'+ $("#inputCat").val() + '</td><td style="text-align:center"><button type="button" value="' + key + '" class="btn btn-danger btn-sm btn-delete"><i class="bi bi-trash"></i> </button></td></tr>')
+      console.log(key);
+
+      $("#inputCat").val("") 
+      $("#inputCat").focus()
+    }
+
+  });
+
+
+  $(document).on('click', '.btn-delete', function(event){
+    $("#tr_" + $(this).val()).remove();
+  })
+
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+ 
+
+</script>
+
+</html>
